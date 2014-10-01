@@ -1,3 +1,7 @@
+local hotkey = require 'mjolnir.hotkey'
+local window = require 'mjolnir.window'
+local mouse = require 'mjolnir.jstevenson.cursor'
+
 local match_dialgoue = import('utils/match_dialogue')
 local geom = import('utils/geometry')
 

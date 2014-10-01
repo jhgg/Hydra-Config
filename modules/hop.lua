@@ -1,3 +1,6 @@
+local hotkey = require 'mjolnir.hotkey'
+local window = require 'mjolnir.window'
+
 local function module_init()
     local mash = config:get("hop.mash", { "cmd", "ctrl", "alt", "shift" })
     local keys = config:get("hop.keys", {

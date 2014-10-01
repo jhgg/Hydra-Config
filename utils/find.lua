@@ -1,3 +1,7 @@
+local fnutils = require 'mjolnir.fnutils'
+local window = require 'mjolnir.window'
+local mouse = require 'mjolnir.jstevenson.cursor'
+
 local find = {
     window = {},
     windows = {},

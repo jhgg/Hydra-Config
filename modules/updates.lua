@@ -1,13 +1,16 @@
+local notify = require 'mjolnir._asm.notify'
+local hydra = require 'mjolnir._asm.hydra'
+local timer = require 'mjolnir._asm.timer'
 
 -- show available updates
 local function showupdate()
-    os.execute('open https://github.com/sdegutis/Hydra/releases')
+    os.execute('open https://github.com/sdegutis/mjolnir/releases')
 end
 
 -- what to do when an update is checked
 local function updates_available(available)
     if available then
-        notify.show("Hydra update available", "", "Click here to see the changelog and maybe even install it", "showupdate")
+        notify.show("Mjolnir update available", "", "Click here to see the changelog and maybe even install it", "showupdate")
         hydra.updates.newversion = available
     else
         hydra.alert("No update available.")
@@ -26,7 +29,7 @@ local function module_init()
     timer.new(timer.days(1), checkforupdates):start()
     notify.register("showupdate", showupdate)
 
-    -- if this is your first time running Hydra, you're launching it more than a week later, check now
+    -- if this is your first time running Mjolnir, you're launching it more than a week later, check now
     local lastcheckedupdates = hydra.settings.get('lastcheckedupdates')
     if lastcheckedupdates == nil or lastcheckedupdates <= os.time() - timer.days(7) then
         checkforupdates()

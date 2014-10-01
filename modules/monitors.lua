@@ -1,3 +1,8 @@
+local hotkey = require 'mjolnir.hotkey'
+local window = require 'mjolnir.window'
+local geometry = require 'mjolnir.geometry'
+local mouse = require 'mjolnir.jstevenson.cursor'
+
 local position = import('utils/position')
 local monitors = import('utils/monitors')
 

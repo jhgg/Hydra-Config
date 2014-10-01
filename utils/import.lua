@@ -3,6 +3,7 @@
 --
 -- Useful for our purposes, where we'll have additional files that we want to be reloaded each time hydra.reload
 -- is called.
+local hydra = require 'mjolnir._asm.hydra'
 
 local import = {}
 

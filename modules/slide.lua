@@ -1,3 +1,6 @@
+local hotkey = require 'mjolnir.hotkey'
+local window = require 'mjolnir.window'
+
 local nudge = import('utils/nudge')
 
 local function module_init()

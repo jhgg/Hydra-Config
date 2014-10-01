@@ -1,3 +1,6 @@
+local fnutils = require 'mjolnir.fnutils'
+local screen = require 'mjolnir.screen'
+
 local dimensions__proto = {}
 local dimensions__mt = { __index = dimensions__proto }
 
@@ -18,7 +21,7 @@ end
 function dimensions__proto:relative_window_position(win)
     local frame = win:frame()
     local screen = win:screen()
-    local screenframe = screen:frame_without_dock_or_menu()
+    local screenframe = screen:frame()
 
     return self:relative_to({
         w = frame.w,
@@ -47,8 +50,8 @@ end
 
 local function get_screen_dimensions(screen)
 
-    local dim = screen:frame_without_dock_or_menu()
-    local frame = screen:frame_including_dock_and_menu()
+    local dim = screen:frame()
+    local frame = screen:fullframe()
 
     local dimensions = {
         w = dim.w,
@@ -79,19 +82,19 @@ end
 local function autodiscover_monitors(rows)
     local screens = screen.allscreens()
     local primary_screen = fnutils.find(screens, function(screen)
-        local dim = screen:frame_including_dock_and_menu()
+        local dim = screen:fullframe()
         return dim.x == 0 and dim.y == 0
     end)
     local screen_table = {}
-    local reference_screen_frame = primary_screen:frame_including_dock_and_menu()
+    local reference_screen_frame = primary_screen:fullframe()
 
     for _ = 1, rows do
         local monitors_in_row = fnutils.filter(screens, function(screen)
-            return screen:frame_including_dock_and_menu().y == reference_screen_frame.y
+            return screen:fullframe().y == reference_screen_frame.y
         end)
 
         table.sort(monitors_in_row, function(a, b)
-            return a:frame_including_dock_and_menu().x < b:frame_including_dock_and_menu().x
+            return a:fullframe().x < b:fullframe().x
         end)
 
         fnutils.concat(screen_table, monitors_in_row)

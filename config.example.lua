@@ -4,12 +4,10 @@ config.modules = {
     "arrangement",
     "monitors",
     "repl",
-    "updates",
     "reload",
     "arrows",
     "lock",
-    "fullscreen",
-    "app_selector"
+    "fullscreen"
 }
 
 -- Maps monitor id -> screen index.

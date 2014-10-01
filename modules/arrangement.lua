@@ -1,3 +1,8 @@
+local alert = require 'mjolnir.alert'
+local notify = require 'mjolnir._asm.notify'
+local fnutils = require 'mjolnir.fnutils'
+local hotkey = require 'mjolnir.hotkey'
+
 local find = import('utils/find')
 local monitors = import('utils/monitors').configured_monitors
 local position = import('utils/position')
@@ -54,8 +59,11 @@ local function arrange(arrangement)
                 end
 
             else
-
-                window:setframe(position[item_position](monitors[monitor].dimensions))
+                if position[item_position] == nil then
+                    alert.show("Unknown position: " .. item_position, 1.0)
+                else
+                    window:setframe(position[item_position](monitors[monitor].dimensions))
+                end
             end
 
         elseif type(item_position) == "function" then
@@ -78,7 +86,7 @@ local function handle_arrangement(arrangement)
     arrange(arrangement.arrangement)
 
     if arrangement.alert == true then
-        hydra.alert("Arranged monitors with: " .. (arrangement.name or "unnamed arrangement"), 1.0)
+        alert.show("Arranged monitors with: " .. (arrangement.name or "unnamed arrangement"), 1.0)
     end
 end
 

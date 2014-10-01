@@ -1,3 +1,5 @@
+local hotkey = require 'mjolnir.hotkey'
+local hydra = require 'mjolnir._asm.hydra'
 
 local function module_init()
     local mash = config:get("lock.mash", {})

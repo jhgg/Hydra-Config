@@ -1,3 +1,6 @@
+local fnutils = require 'mjolnir.fnutils'
+local utf8 = require('mjolnir._asm.data').utf8
+
 local fuzzy_matcher = import('utils/matchers/fuzzy')
 local contains_matcher = import('utils/matchers/contains')
 local combinator = import('utils/matchers/combinator')

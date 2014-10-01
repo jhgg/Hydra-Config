@@ -1,3 +1,6 @@
+local hydra = require 'mjolnir._asm.hydra'
+local fnutils = require 'mjolnir._asm'
+
 local interface = {}
 
 function interface:tell(cmd)
@@ -56,7 +59,7 @@ return function(app)
 
     -- Bind the function directly, so it can be called like control.play() instead of control:play()
     -- We want to make it seem like we're not using an instance of anything o:
-    for i, fn in ipairs({ "play", "pause", "playpause", "next", "previous", "currentTrack" }) do
+    for _, fn in ipairs({ "play", "pause", "playpause", "next", "previous", "currentTrack" }) do
         control[fn] = fnutils.partial(control[fn], control)
     end
 

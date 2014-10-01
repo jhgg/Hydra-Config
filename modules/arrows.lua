@@ -1,3 +1,6 @@
+local hotkey = require 'mjolnir.hotkey'
+local window = require 'mjolnir.window'
+
 local position = import('utils/position')
 local monitors = import('utils/monitors')
 
